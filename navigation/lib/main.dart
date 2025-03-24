@@ -10,7 +10,7 @@ void main() {
       ),
       GoRoute(
         path:'/second',
-        builder:(context,state) => const SecondPage(),
+        builder:(context, state) => const SecondPage(),
       )
     ],
   );
@@ -62,7 +62,6 @@ class FirstPage extends StatelessWidget {
               }
             ),
           ),
-
         ]
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -86,7 +85,7 @@ class SecondPage extends StatelessWidget {
         centerTitle: true,
         title: Text(
           "Second Page",
-          style: TextStyle(color:Colors.white)
+          style: TextStyle(color: Colors.white)
         ),
       ),
       body: Column(
@@ -102,7 +101,7 @@ class SecondPage extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: (){
-                  Navigator.pop(context);
+                Navigator.pop(context);
               },
               child: const Text("Push back"),
             )
