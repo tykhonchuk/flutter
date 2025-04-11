@@ -1,129 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'Pages/first_page.dart';
+import 'Pages/second_page.dart';
+
+
+enum PagesRoute {
+  firstPage ('/', 'First Page'),
+  secondPage ('/second', 'Second Page');
+
+  const PagesRoute(this.path, this.name);
+  final String path;
+  final String name;
+}
 
 void main() {
-  final _goRoute = GoRouter(
-    routes:[
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const FirstPage(),
-      ),
-      GoRoute(
-        path:'/second',
-        builder:(context, state) => const SecondPage(),
-      )
-    ],
+  final routeBuilders = {
+    PagesRoute.firstPage: (context, state) => const FirstPage(),
+    PagesRoute.secondPage: (context, state) => const SecondPage(),
+  };
+  final goRoute = GoRouter(
+    routes: PagesRoute.values.map((route) {
+      return GoRoute(
+        path: route.path,
+        name: route.name,
+        builder: routeBuilders[route]
+      );
+    }).toList(),
   );
   return runApp(MaterialApp.router(
-    routerConfig: _goRoute,
+    routerConfig: goRoute,
+    theme: ThemeData(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
+      useMaterial3: true
+    ),
+    darkTheme: ThemeData(
+      colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Colors.lightGreen),
+      useMaterial3: true,
+    ),
   ));
-}
-
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.blueAccent,
-          title: Text(
-            "First Page",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        body: Column(
-            children: [
-              Center(
-                child:ElevatedButton(
-                  style:ElevatedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                    backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                  ),
-                  child: Text('Go route'),
-                  onPressed: (){
-                    context.go('/second');
-                  },
-                ),
-              ),
-              Center(
-                child:ElevatedButton(
-                    style:ElevatedButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                    ),
-                    child: Text('Push route'),
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder:(context) =>const SecondPage())
-                      );
-                    }
-                ),
-              ),
-            ]
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          foregroundColor: colorScheme.onTertiaryContainer,
-          backgroundColor: colorScheme.tertiaryContainer,
-          onPressed: (){},
-          label: const Text('Add'),
-          icon: const Icon(Icons.add),
-        )
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  const SecondPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        centerTitle: true,
-        title: Text(
-            "Second Page",
-            style: TextStyle(color: Colors.white)
-        ),
-      ),
-      body: Column(
-        children: [
-          Center(
-            child: ElevatedButton(
-              style:ElevatedButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              ),
-              onPressed: (){
-                context.pop();
-              },
-              child: const Text("Go back"),
-            ),
-          ),
-          Center(
-              child: ElevatedButton(
-                style:ElevatedButton.styleFrom(
-                  foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                ),
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-                child: const Text("Push back"),
-              )
-          ),
-          Center(
-              child: ElevatedButton(
-                onPressed: (){
-                  context.go('/');
-                },
-                child: const Text("Main page"),
-              )
-          ),
-        ],
-      ),
-    );
-  }
 }
