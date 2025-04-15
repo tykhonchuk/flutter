@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-// @TODO: Use "package:config/pages_route.dart" instead of the relative path
+import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 import "package:nav/config/pages_route.dart";
 
 class SecondPage extends StatelessWidget {
@@ -8,7 +7,7 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("Second Page")),
+      appBar: AppBar(centerTitle: true, title: const Text("Second Page")),
       body: Column(
         children: [
           Center(
