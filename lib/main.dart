@@ -14,7 +14,8 @@ void main() {
   final routeBuilders = {
     PagesRoute.firstPage: (context, state) => const FirstPage(),
     PagesRoute.secondPage: (context, state) => const SecondPage(),
-    PagesRoute.thirdPage: (context, state) => const CubitPage(),
+    PagesRoute.thirdPage: (context, state) => BlocProvider(create: (_)=> CounterCubit(), child: const CubitPage(),
+    ),
   };
   final goRoute = GoRouter(
     routes:
@@ -23,13 +24,10 @@ void main() {
       }).toList(),
   );
   runApp(
-    BlocProvider(
-      create: (_) => CounterCubit(),
-      child: MaterialApp.router(
-        routerConfig: goRoute,
-        theme: themeLight,
-        darkTheme: themeDark,
-      ),
+    MaterialApp.router(
+      routerConfig: goRoute,
+      theme: themeLight,
+      darkTheme: themeDark,
     ),
   );
 }

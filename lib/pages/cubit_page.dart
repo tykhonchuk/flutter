@@ -9,47 +9,38 @@ class CubitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CounterCubit(),
-      child: Builder(
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(title: const Text("Cubit Page")),
-            body: Center(
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      context.go(PagesRoute.firstPage.path);
-                    },
-                    child: const Text("Main page"),
-                  ),
-                  BlocBuilder<CounterCubit, int>(
-                    builder: (context, count) {
-                      return Text("Count: $count");
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () =>
-                            context.read<CounterCubit>().increment(),
-                        child: const Text("Increment"),
-                      ),
-                      const SizedBox(width: 16),
-                      ElevatedButton(
-                        onPressed: () =>
-                            context.read<CounterCubit>().decrement(),
-                        child: const Text("Decrement"),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Cubit Page")),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                context.go(PagesRoute.firstPage.path);
+              },
+              child: const Text("Main page"),
             ),
-          );
-        },
+            BlocBuilder<CounterCubit, int>(
+              builder: (context, count) {
+                return Text("Count: $count");
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => context.read<CounterCubit>().increment(),
+                  child: const Text("Increment"),
+                ),
+                const SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: () => context.read<CounterCubit>().decrement(),
+                  child: const Text("Decrement"),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
