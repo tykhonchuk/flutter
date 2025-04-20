@@ -14,8 +14,7 @@ void main() {
   final routeBuilders = {
     PagesRoute.firstPage: (context, state) => const FirstPage(),
     PagesRoute.secondPage: (context, state) => const SecondPage(),
-    PagesRoute.thirdPage: (context, state) => BlocProvider(create: (_)=> CounterCubit(), child: const CubitPage(),
-    ),
+    PagesRoute.thirdPage: (context, state) => BlocProvider(create: (_)=> CounterCubit(), child: const CubitPage()),
   };
   final goRoute = GoRouter(
     routes:
