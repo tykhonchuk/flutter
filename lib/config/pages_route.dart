@@ -1,8 +1,8 @@
-// @TODO: Keep the configuration in separate files
+
 enum PagesRoute {
-  // @TODO: Double quote the enum values
-  firstPage('/', 'First Page'),
-  secondPage('/second', 'Second Page');
+  firstPage("/", "First Page"),
+  secondPage("/second", "Second Page"),
+  thirdPage("/cubit", "Cubit Page");
 
   const PagesRoute(this.path, this.name);
   final String path;

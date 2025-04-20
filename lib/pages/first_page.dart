@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-// @TODO: Use "package:config/pages_route.dart" instead of the relative path
+import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 import "package:nav/config/pages_route.dart";
 
 class FirstPage extends StatelessWidget {
@@ -8,12 +7,12 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("First Page")),
+      appBar: AppBar(centerTitle: true, title: const Text("First Page")),
       body: Column(
         children: [
           Center(
             child: ElevatedButton(
-              child: Text('Go route'),
+              child: const Text("Go route"),
               onPressed: () {
                 context.go(PagesRoute.secondPage.path);
               },
@@ -21,9 +20,17 @@ class FirstPage extends StatelessWidget {
           ),
           Center(
             child: ElevatedButton(
-              child: Text('Push route'),
+              child: const Text("Push route"),
               onPressed: () {
                 context.push(PagesRoute.secondPage.path);
+              },
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: const Text("Cubit counter"),
+              onPressed: () {
+                context.push(PagesRoute.thirdPage.path);
               },
             ),
           ),
@@ -31,7 +38,7 @@ class FirstPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        label: const Text('Add'),
+        label: const Text("Add"),
         icon: const Icon(Icons.add),
       ),
     );

@@ -1,33 +1,32 @@
-// @TODO: Double quote the import statements
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:go_router/go_router.dart";
 import "package:nav/config/pages_route.dart";
+import "package:nav/config/theme_dark.dart";
 import "package:nav/config/theme_light.dart";
+import "package:nav/cubit/counter_cubit.dart";
+import "package:nav/pages/cubit_page.dart";
+import "package:nav/pages/first_page.dart";
+import "package:nav/pages/second_page.dart";
 
-// @TODO: Use "package:your_project_name/..." for imports
-import 'Pages/first_page.dart';
-import 'Pages/second_page.dart';
 
 void main() {
   final routeBuilders = {
     PagesRoute.firstPage: (context, state) => const FirstPage(),
     PagesRoute.secondPage: (context, state) => const SecondPage(),
+    PagesRoute.thirdPage: (context, state) => BlocProvider(create: (_)=> CounterCubit(), child: const CubitPage()),
   };
   final goRoute = GoRouter(
     routes:
-        PagesRoute.values.map((route) {
-          return GoRoute(path: route.path, name: route.name, builder: routeBuilders[route]);
-        }).toList(),
+      PagesRoute.values.map((route) {
+        return GoRoute(path: route.path, name: route.name, builder: routeBuilders[route]);
+      }).toList(),
   );
-  return runApp(
+  runApp(
     MaterialApp.router(
       routerConfig: goRoute,
-      // @TODO: Move the theme to a separate file. Just like the theme_light.dart
       theme: themeLight,
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Colors.lightGreen),
-        useMaterial3: true,
-      ),
+      darkTheme: themeDark,
     ),
   );
 }
