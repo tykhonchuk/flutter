@@ -29,7 +29,6 @@ class _SwapiPageState extends State<SwapiPage> {
               ),
               ElevatedButton(
                 child: const Text("Fetch Person"),
-
                 onPressed: () {
                   final cubit = context.read<SwapiCubit>();
                   final id = int.tryParse(_idController.text);
@@ -70,7 +69,6 @@ class _SwapiPageState extends State<SwapiPage> {
                   return const SizedBox.shrink();
                 },
               ),
-
             ],
           ),
         );
