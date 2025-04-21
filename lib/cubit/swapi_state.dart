@@ -6,6 +6,7 @@ sealed class SwapiState {
 
 class SwapiStateInitial extends SwapiState {
   const SwapiStateInitial();
+
 }
 
 class SwapiStateLoading extends SwapiState {
@@ -13,10 +14,15 @@ class SwapiStateLoading extends SwapiState {
 }
 
 class SwapiStateSuccess extends SwapiState {
-  const SwapiStateSuccess({required this.id, this.displayName});
+  const SwapiStateSuccess({required this.id, required this.name, required this.gender, required this.eyeColor, required this.hairColor, required this.height, required this.birthYear});
 
   final String id;
-  final String? displayName;
+  final String name;
+  final String gender;
+  final String eyeColor;
+  final String hairColor;
+  final String height;
+  final String birthYear;
 }
 
 class SwapiStateError extends SwapiState {
