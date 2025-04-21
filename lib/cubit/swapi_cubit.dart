@@ -22,7 +22,15 @@ class SwapiCubit extends Cubit<SwapiState> {
       final result = json["result"] as Map<String, dynamic>;
       final properties = result["properties"] as Map<String, dynamic>;
 
-      emit(SwapiStateSuccess(id: result["uid"].toString(), name: properties["name"].toString(), gender: properties["gender"].toString(), eyeColor: properties["eye_color"].toString(), hairColor: properties["hair_color"].toString(), height: properties["height"].toString(), birthYear: properties["birth_year"].toString()));
+      emit(SwapiStateSuccess(
+          id: result["uid"].toString(),
+          name: properties["name"].toString(),
+          gender: properties["gender"].toString(),
+          eyeColor: properties["eye_color"].toString(),
+          hairColor: properties["hair_color"].toString(),
+          height: properties["height"].toString(),
+          birthYear: properties["birth_year"].toString(),
+      ),);
    } catch (e) {
     emit(SwapiStateError(error: "$e"));
    }
