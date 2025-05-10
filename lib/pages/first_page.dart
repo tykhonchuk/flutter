@@ -34,6 +34,14 @@ class FirstPage extends StatelessWidget {
               },
             ),
           ),
+          Center(
+            child: ElevatedButton(
+              child: const Text("Swapi Cubit"),
+              onPressed: () {
+                context.push(PagesRoute.swapiPage.path);
+              },
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(

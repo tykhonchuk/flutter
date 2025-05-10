@@ -5,9 +5,11 @@ import "package:nav/config/pages_route.dart";
 import "package:nav/config/theme_dark.dart";
 import "package:nav/config/theme_light.dart";
 import "package:nav/cubit/counter_cubit.dart";
+import "package:nav/cubit/swapi_cubit.dart";
 import "package:nav/pages/cubit_page.dart";
 import "package:nav/pages/first_page.dart";
 import "package:nav/pages/second_page.dart";
+import "package:nav/pages/swapi_page.dart";
 
 
 void main() {
@@ -15,6 +17,7 @@ void main() {
     PagesRoute.firstPage: (context, state) => const FirstPage(),
     PagesRoute.secondPage: (context, state) => const SecondPage(),
     PagesRoute.thirdPage: (context, state) => BlocProvider(create: (_)=> CounterCubit(), child: const CubitPage()),
+    PagesRoute.swapiPage: (context, state) => BlocProvider(create: (_)=> SwapiCubit(), child: const SwapiPage()),
   };
   final goRoute = GoRouter(
     routes:
