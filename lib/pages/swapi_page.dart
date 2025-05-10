@@ -18,7 +18,6 @@ class _SwapiPageState extends State<SwapiPage> {
     return BlocBuilder<SwapiCubit, SwapiState>(
       builder: (context, state) {
         final cubit = context.read<SwapiCubit>();
-        final state = cubit.state;
 
         return Scaffold(
           appBar: AppBar(title: const Text("Swapi Page")),
@@ -30,7 +29,6 @@ class _SwapiPageState extends State<SwapiPage> {
               ElevatedButton(
                 child: const Text("Fetch Person"),
                 onPressed: () {
-                  final cubit = context.read<SwapiCubit>();
                   final id = int.tryParse(_idController.text);
 
                   if (id == null) {
