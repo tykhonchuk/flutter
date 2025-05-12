@@ -46,8 +46,6 @@ class _OcrPageState extends State<OCRPage> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OCRCubit, OCRState>(
