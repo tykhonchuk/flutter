@@ -20,12 +20,9 @@ void main() {
   final routeBuilders = {
     PagesRoute.firstPage: (context, state) => const FirstPage(),
     PagesRoute.secondPage: (context, state) => const SecondPage(),
-    PagesRoute.thirdPage: (context, state) =>
-        BlocProvider(create: (_) => CounterCubit(), child: const CubitPage()),
-    PagesRoute.swapiPage: (context, state) =>
-        BlocProvider(create: (_) => SwapiCubit(), child: const SwapiPage()),
-    PagesRoute.ocrPage: (context, state) =>
-        BlocProvider(create: (_) => OCRCubit(), child: const OCRPage()),
+    PagesRoute.thirdPage: (context, state) => BlocProvider(create: (_) => CounterCubit(), child: const CubitPage()),
+    PagesRoute.swapiPage: (context, state) => BlocProvider(create: (_) => SwapiCubit(), child: const SwapiPage()),
+    PagesRoute.ocrPage: (context, state) => BlocProvider(create: (_) => OCRCubit(), child: const OCRPage()),
     PagesRoute.ocrResultPage: (context, GoRouterState state) {
       final imageBytes = state.extra as Uint8List?;
       return OCRResultPage(imageBytes: imageBytes!);
