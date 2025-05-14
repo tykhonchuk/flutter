@@ -42,6 +42,14 @@ class FirstPage extends StatelessWidget {
               },
             ),
           ),
+          Center(
+            child: ElevatedButton(
+              child: const Text("OCR Cubit"),
+              onPressed: () {
+                context.push(PagesRoute.ocrPage.path);
+              },
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
